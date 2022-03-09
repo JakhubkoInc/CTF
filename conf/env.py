@@ -1,0 +1,10 @@
+# Defines environment variable names used by both test-getter and test-runner modules.
+
+FIREFOX_DRIVER_URL_NAME = "FIREFOX_DRIVER_URL"
+FIREFOX_BIN_NAME = "FIREFOX_BIN"
+
+PROGTEST_USR_NAME = "PROGTEST_USR"
+PROGTEST_PASS_NAME = "PROGTEST_PASS"
+
+TEST_LANG_NAME = "TEST_LANG"
+TESTS_DIR_NAME = "TESTS_DIR"
