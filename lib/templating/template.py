@@ -1,14 +1,14 @@
-from email.policy import default
 import json
 import os
+from email.policy import default
 from pathlib import Path
 from types import NoneType
 from typing import (Any, Callable, Generic, Iterable, Iterator, Mapping, Type,
                     TypeVar, Union)
 
-import testprog_common.lib.auxiliary as auxiliary
-from testprog_common.lib.multikey_dict import TupleKeyDict
-from testprog_common.lib.logging.static_log import STATIC_LOGGER as log
+from .. import auxiliary
+from ..logging.static_log import STATIC_LOGGER as log
+from ..multikey_dict import TupleKeyDict
 
 # ISSUE: [BT-11] Templating
 

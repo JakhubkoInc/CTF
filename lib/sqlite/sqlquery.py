@@ -3,8 +3,8 @@ from dataclasses import dataclass
 from enum import IntEnum
 from typing import TYPE_CHECKING
 
-import testprog_common.lib.auxiliary as utils
-from testprog_common.lib.logging.static_log import STATIC_LOGGER as log
+from .. import auxiliary as utils
+from ..logging.static_log import STATIC_LOGGER as log
 
 from .sqlitesocket import SQLiteSocket
 

@@ -6,9 +6,9 @@ from pathlib import Path
 from typing import Union
  
 import pytest
-import testprog_common.lib.auxiliary as auxiliary
+from ..lib import auxiliary
 from selenium import webdriver
-from testprog_common.lib.datastore.datastore import Datastore
+from ..lib.datastore.datastore import Datastore
 
 from . import driver as cfg
 from . import env

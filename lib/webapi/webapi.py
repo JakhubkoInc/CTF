@@ -5,10 +5,10 @@ import uuid
 from datetime import datetime, timedelta
 from time import sleep
 
-import testprog_common.conf as cfg
-from testprog_common.lib import auxiliary
-from testprog_common.lib.datastore.datastore import DatastoreRootProvider
-from testprog_common.lib.logging.logger_gen import LoggerBuilder
+from ... import conf as cfg
+from .. import auxiliary
+from ..datastore.datastore import DatastoreRootProvider
+from ..logging.logger_gen import LoggerBuilder
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains

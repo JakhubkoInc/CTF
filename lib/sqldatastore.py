@@ -1,11 +1,11 @@
 import pickle
 from typing import TYPE_CHECKING, Any, Callable, Iterator, Union
 
-from testprog_common.lib.datastore.datastore import Datastore
+from .datastore.datastore import Datastore
 
 if TYPE_CHECKING:
-    from testprog_common.lib.sqlite.sqlquery import SQLiteTableQuery
-    from testprog_common.lib.sqlite.sqlitesocket import SQLiteTableSocket
+    from .sqlite.sqlquery import SQLiteTableQuery
+    from .sqlite.sqlitesocket import SQLiteSocket
 
 
 class SQLiteDatastore(Datastore):
@@ -16,11 +16,11 @@ class SQLiteDatastore(Datastore):
 
     If key is already present in db, its value will be updated.
     """
-    KEY_NAME = "Key"
-    VALUE_NAME = "Value"
+    _KEY_NAME = "Key"
+    _VALUE_NAME = "Value"
 
     def __init__(self, 
-                 socket: 'SQLiteTableSocket',
+                 socket:'SQLiteSocket',
                  payload:dict[str,Any] = {},
                  create_meta:bool = True,
                  value_type = None,
@@ -43,8 +43,8 @@ class SQLiteDatastore(Datastore):
     def db(self) -> 'SQLiteTableQuery':
         return self.socket.query
     
-    def _get_table_schema(self, value_type):
-        return f"{SQLiteDatastore.KEY_NAME} TEXT PRIMARY KEY,{SQLiteDatastore.VALUE_NAME} {value_type}"
+    def _make_table_schema(self, value_type):
+        return f"{SQLiteDatastore._KEY_NAME} TEXT PRIMARY KEY,{SQLiteDatastore._VALUE_NAME} {value_type}"
     
     def _get_value_type_from_wrapper(self) -> str | None:
         try:
@@ -95,7 +95,7 @@ class SQLiteDatastore(Datastore):
             self.__setitem__(k,dict[k])
 
 class SqliteDatastoreIterator(Iterator):
-    COLUMNS_SELECTOR = "Key,Value"
+    _COLUMNS_SELECTOR = "Key,Value"
 
     def __init__(self, sqlite_datastore: SQLiteDatastore) -> None:
         self.datastore = sqlite_datastore
@@ -105,7 +105,10 @@ class SqliteDatastoreIterator(Iterator):
         return self
 
     def __next__(self) -> Any:
-        response = self.datastore.db.select(SqliteDatastoreIterator.COLUMNS_SELECTOR).limit(1).offset(self._counter).execute().fetchone()
+        response = self.datastore.db \
+            .select(SqliteDatastoreIterator._COLUMNS_SELECTOR) \
+            .limit(1).offset(self._counter) \
+            .execute().fetchone()
         if response:
             data = self.datastore.value_unwrapper(response[1])
             self._counter += 1

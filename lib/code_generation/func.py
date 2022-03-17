@@ -1,5 +1,5 @@
 import builtins
-from testprog_common.lib.logging.static_log import STATIC_LOGGER as log
+from ..logging.static_log import STATIC_LOGGER as log
 
 # code taken from module dataclasses (python version >= 3.10)
 

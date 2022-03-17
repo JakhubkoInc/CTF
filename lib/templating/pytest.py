@@ -1,12 +1,12 @@
 from .template import Template, TemplateMeta, payload
 from pathlib import Path
 from typing import Union
-from testprog_common.lib import auxiliary
+from .. import auxiliary
 import time
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-  from testprog_common.tools.project_dir_gen import TodoItem
+  from ...tools.project_dir_gen import TodoItem
 
 
 
