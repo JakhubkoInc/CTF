@@ -2,7 +2,7 @@ import atexit
 from sqlite3.dbapi2 import Connection
 from typing import TYPE_CHECKING
 
-from testprog_common.lib.logging.static_log import STATIC_LOGGER as log
+from ..logging.static_log import STATIC_LOGGER as log
 
 
 if TYPE_CHECKING:

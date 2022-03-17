@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Union
 
-from testprog_common.lib import auxiliary
+from .. import auxiliary
 
 from .pytest import TaskTemplate
 from .template import Template, TemplateMeta, payload

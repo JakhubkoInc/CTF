@@ -1,9 +1,9 @@
 from typing import Any
 
-from testprog_common.lib.datastore.datastore import (Datastore,
-                                                 DatastoreRootProvider,
-                                                 DatastoreSubscriber)
-from testprog_common.lib.sqldatastore import SQLiteDatastore
+from .datastore import (Datastore,
+                        DatastoreRootProvider,
+                        DatastoreSubscriber)
+from ..sqldatastore import SQLiteDatastore
 
 
 class Context(Datastore):

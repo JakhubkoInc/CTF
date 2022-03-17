@@ -2,10 +2,10 @@ import json
 from datetime import datetime
 from typing import Union
 
-import testprog_common.lib.auxiliary as auxiliary
+from ..lib import auxiliary
 from colour import Color
-from testprog_common.conf.projectdir import *
-from testprog_common.lib.templating.pytest import TaskTemplate
+from ..conf.projectdir import *
+from ..lib.templating.pytest import TaskTemplate
 
 
 class JSGen:

@@ -5,13 +5,12 @@ from distutils.dir_util import copy_tree
 from enum import Enum
 from pathlib import Path
 
-import testprog_common.conf.testing as tcfg
-import testprog_common.lib.auxiliary as Auxiliary
-from testprog_common.conf import Environment
-from testprog_common.conf.projectdir import *
-
+from ..conf import Environment
+from ..conf import testing as tcfg
+from ..conf.projectdir import *
+from ..lib import auxiliary
+from ..lib.templating.progtest import ProgtestTaskGroupTemplate
 from .task_md import update_task_md
-from testprog_common.lib.templating.progtest import ProgtestTaskGroupTemplate
 
 
 class TodoItemAction(Enum):
@@ -65,7 +64,7 @@ def prepare_project_dir(path=os.getenv(Environment.TESTS_DIR_NAME), force_md_upd
     
     print(f" > Preparing project dir {path}")
     
-    template_ids = [Path(file).stem for file in Auxiliary.list_file_paths(tcfg.TEMPLATES_DIR) if Path(file).suffix == ".json"]
+    template_ids = [Path(file).stem for file in auxiliary.list_file_paths(tcfg.TEMPLATES_DIR) if Path(file).suffix == ".json"]
     
     # copy markdown js assets to project dir
     try:
@@ -81,7 +80,7 @@ def prepare_project_dir(path=os.getenv(Environment.TESTS_DIR_NAME), force_md_upd
         
         template_path = Path(tcfg.TEMPLATES_DIR) / f"{template_id}.json"
         group_template = ProgtestTaskGroupTemplate.from_json(template_path)
-        project_dir_path = Path(path) / f"{template_id}_{Auxiliary.sanitize_str(group_template.title)}"
+        project_dir_path = Path(path) / f"{template_id}_{auxiliary.sanitize_str(group_template.title)}"
         optional_template_path:Path = project_dir_path / OPTIONAL_TEMPLATE_NAME
         
 
@@ -91,10 +90,10 @@ def prepare_project_dir(path=os.getenv(Environment.TESTS_DIR_NAME), force_md_upd
         if overwrite_templates or not optional_template_path.exists():
             shutil.copy2(template_path, optional_template_path)
         else:
-            Auxiliary.update_json_file(optional_template_path, group_template)
+            auxiliary.update_json_file(optional_template_path, group_template)
         
         for task_id in group_template.tasks():
-            task_dir_path = Path(project_dir_path) / f"{task_id}_{Auxiliary.sanitize_str(group_template.tasks()[task_id].title)}"
+            task_dir_path = Path(project_dir_path) / f"{task_id}_{auxiliary.sanitize_str(group_template.tasks()[task_id].title)}"
             md_path = task_dir_path / Files.MD_NAME
             task_program_path = task_dir_path / Files.PROGRAM_NAME
 

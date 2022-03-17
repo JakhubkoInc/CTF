@@ -1,7 +1,7 @@
 import json
 from typing import Union
 
-from testprog_common.lib.datastore.context import Context, SQLiteContext
+from .context import Context, SQLiteContext
 
 
 class HistoryContext(Context[str,list[str]]):

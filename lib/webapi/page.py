@@ -1,4 +1,4 @@
-from testprog_common.lib.datastore.datastore import (
+from ..datastore.datastore import (
     DatastoreLinkFieldDescriptor, DatastoreSubscriber)
 
 from .webapi import FirefoxWebapi

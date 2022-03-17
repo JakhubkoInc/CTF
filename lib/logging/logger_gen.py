@@ -3,7 +3,7 @@ import os
 import sys
 from pathlib import Path
 
-import testprog_common.conf as cfg
+from ... import conf as cfg
 
 
 class LoggerBuilder:
